@@ -1,0 +1,273 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{graphicx}%For centering solution box
+\lhead{IND ENG 221\\}
+\rhead{Kartikeya Sharma\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE IND ENG 221\\
+    \LARGE HW 3\\[0.5em]
+    \large \today\\[0.5em]
+    \large Kartikeya Sharma\par
+    \large SID: 3037376860\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+    \question A \$100 million interest rate swap has a remaining life of 10 months. Under the terms
+of the swap, six-month LIBOR is exchanged for 4\% per annum (compounded
+semiannually). Six-month LIBOR forward rates for all maturities are 3\% (with
+semiannual compounding). The six-month LIBOR rate was 2.4\% two months ago. OIS
+rates for all maturities are 2.7\% with continuous compounding. What is the current value
+of the swap to the party paying floating? What is the value to the party paying fixed?
+(Hull 7.12)
+    
+    \begin{solution}
+
+    \subsection*{Step 1: Present Value of the Fixed Leg}
+The fixed rate is 4\% annually, paid semiannually. The payment dates are in 6 months ($t_1 = 0.5$ years) and 10 months ($t_2 = \frac{10}{12} \approx 0.8333$ years). Each semiannual fixed payment is 2\% of the notional amount. 
+
+The present value of these payments is:
+
+\[
+PV_{\text{fixed}} = 2 \times e^{-0.027 \times 0.5} + 102 \times e^{-0.027 \times 0.8333}
+\]
+
+where the first term represents the payment at $t_1$ and the second term includes the notional repayment ($100$ million) plus the final fixed payment.
+
+\subsection*{Step 2: Present Value of the Floating Leg}
+The floating rate payment for the first 6 months is based on the LIBOR rate of 2.4\%, which was set two months ago. Therefore, the floating payment at $t_1$ (in 6 months) is:
+
+\[
+\text{Floating Payment at } t_1 = 100 \times 2.4\% = 2.4 \text{ million USD}
+\]
+
+For the next floating rate payment at $t_2$, the forward rate is 3\%. Therefore, the floating payment at $t_2$ (in 10 months) is:
+
+\[
+\text{Floating Payment at } t_2 = 100 \times 3\% = 3 \text{ million USD}
+\]
+
+The present value of the floating leg is:
+
+\[
+PV_{\text{floating}} = 2.4 \times e^{-0.027 \times 0.5} + 103 \times e^{-0.027 \times 0.8333}
+\]
+
+where the $103$ million includes the notional plus the final floating payment.
+
+\subsection*{Step 3: Net Value of the Swap}
+
+The value of the swap to the party paying fixed is the difference between the present values of the floating and fixed legs:
+
+\[
+\text{Value to Fixed Payer} = PV_{\text{floating}} - PV_{\text{fixed}}
+\]
+
+The value of the swap to the party paying floating is the negative of the above value.
+
+
+\end{solution}
+
+
+    \newpage
+    
+    \question A currency swap has a remaining life of 15 months. It involves exchanging interest at
+10\% on £20 million for interest at 6\% on \$30 million once a year. The term structure of
+risk-free interest rates in the United Kingdom is flat at 7\% and the term structure of
+riskfree interest rates in the United States is flat at 4\% (both with annual compounding).
+The current exchange rate (dollars per pound sterling) is 1.5500. What is the value of the
+swap to the party paying sterling? What is the value of the swap to the party paying
+dollars? (Hull 7.14)
+
+    \begin{solution}
+    \subsection*{Step 1: Value of Sterling Payments}
+
+The party paying GBP will pay 10\% of £20 million at the end of the first year, i.e.,
+
+\[
+\text{GBP Payment} = 0.10 \times 20 = 2 \, \text{million GBP}
+\]
+
+Additionally, the notional £20 million will be paid back at the end of 15 months. The present value of these payments, discounted at the UK risk-free rate of 7\%, is:
+
+\[
+PV_{\text{GBP}} = 2 \times e^{-0.07 \times 1} + 20 \times e^{-0.07 \times \frac{15}{12}}
+\]
+
+\subsection*{Step 2: Value of Dollar Payments}
+
+The party paying USD will pay 6\% of \$30 million at the end of the first year, i.e.,
+
+\[
+\text{USD Payment} = 0.06 \times 30 = 1.8 \, \text{million USD}
+\]
+
+Additionally, the notional \$30 million will be paid back at the end of 15 months. The present value of these payments, discounted at the US risk-free rate of 4\%, is:
+
+\[
+PV_{\text{USD}} = 1.8 \times e^{-0.04 \times 1} + 30 \times e^{-0.04 \times \frac{15}{12}}
+\]
+
+\subsection*{Step 3: Convert GBP Payments to USD}
+
+The present value of the GBP payments in USD, using the exchange rate of 1.5500 USD/GBP, is:
+
+\[
+PV_{\text{GBP in USD}} = 1.5500 \times PV_{\text{GBP}}
+\]
+
+\subsection*{Step 4: Value of the Swap to Each Party}
+
+The value of the swap to the party paying sterling is:
+
+\[
+\text{Value to GBP Payer} = PV_{\text{USD}} - PV_{\text{GBP in USD}}
+\]
+
+The value of the swap to the party paying dollars is:
+
+\[
+\text{Value to USD Payer} = -(\text{Value to GBP Payer})
+\]
+
+
+\end{solution}
+
+
+    \pagebreak %Not necessary
+    
+    \question A financial institution has entered into an interest rate swap with company X. Under
+the terms of the swap, it receives 4\% per annum and pays six-month LIBOR on a
+principal of \$10 million for five years. Payments are made every six months. Suppose
+that company X defaults on the sixth payment date (end of year 3) when six-month
+forward LIBOR rates for all maturities are 2\% per annum. What is the loss to the
+financial institution? Assume that six-month LIBOR was 3\% per annum halfway through
+year 3 and that at the time of the default all OIS rates are 1.8\% per annum. OIS rates are
+expressed with continuous compounding; other rates are expressed with semiannual
+compounding. (Hull 7.19)
+
+    \begin{solution}
+    \subsection*{Step 1: Fixed Payments After Default}
+The financial institution is receiving 4\% per annum, or 2\% every six months on \$10 million. The fixed payment is:
+
+\[
+\text{Fixed Payment} = 0.02 \times 10 = 0.2 \, \text{million USD per period}
+\]
+
+Since four payments remain after the default, the total fixed payments are:
+
+\[
+\text{Total Fixed Payments} = 0.2 \times 4 = 0.8 \, \text{million USD}
+\]
+
+\subsection*{Step 2: Floating Payments After Default}
+The floating payments are based on six-month LIBOR, which is 2\% per annum, or 1\% for six months. The floating payment is:
+
+\[
+\text{Floating Payment} = 0.01 \times 10 = 0.1 \, \text{million USD per period}
+\]
+
+For four periods, the total floating payments are:
+
+\[
+\text{Total Floating Payments} = 0.1 \times 4 = 0.4 \, \text{million USD}
+\]
+
+\subsection*{Step 3: Net Cash Flow}
+The net cash flow per period is the difference between the fixed payment and the floating payment:
+
+\[
+\text{Net Cash Flow} = 0.2 - 0.1 = 0.1 \, \text{million USD per period}
+\]
+
+Over four periods, the total net cash flow is:
+
+\[
+\text{Total Net Cash Flow} = 0.1 \times 4 = 0.4 \, \text{million USD}
+\]
+
+\subsection*{Step 4: Present Value of Lost Cash Flows}
+The cash flows must be discounted using the OIS rate of 1.8\%, compounded continuously. The discount factor for a payment at time \(t\) is:
+
+\[
+\text{Discount Factor} = e^{-0.018 \times t}
+\]
+
+The present value of the total lost cash flows is:
+
+\[
+PV_{\text{total}} = 0.1 \times e^{-0.018 \times 0.5} + 0.1 \times e^{-0.018 \times 1.0} + 0.1 \times e^{-0.018 \times 1.5} + 0.1 \times e^{-0.018 \times 2.0}
+\]
+
+\subsection*{Step 5: Total Loss to the Financial Institution}
+The total loss is the sum of the present values of the net cash flows:
+
+\[
+\text{Total Loss} = PV_{\text{total}}
+\]
+
+
+\end{solution}
+
+
+    \newpage
+    \question OIS rates are 3.4\% for all maturities. What is the value of an OIS swap with two years to maturity where 3\% is received and the floating reference rate is paid? Assume annual compounding, annual payments, and a \$100 million principal.
+
+    \begin{solution}
+\subsection*{Step 1: Present Value of Fixed Payments}
+The fixed payments are 3\% annually on a \$100 million notional. The fixed payment is:
+
+\[
+\text{Fixed Payment} = 0.03 \times 100 = 3 \, \text{million USD annually}
+\]
+
+The present value of these fixed payments over two years, discounted at the OIS rate of 3.4\%, is:
+
+\[
+PV_{\text{fixed}} = 3 \times \frac{1}{(1 + 0.034)^1} + 103 \times \frac{1}{(1 + 0.034)^2}
+\]
+
+\[
+PV_{\text{fixed}} = 3 \times 0.967 + 103 \times 0.935 = 2.901 + 96.305 = 99.206 \, \text{million USD}
+\]
+
+\subsection*{Step 2: Present Value of Floating Payments}
+The floating rate is 3.4\% annually on a \$100 million notional. The floating payment is:
+
+\[
+\text{Floating Payment} = 0.034 \times 100 = 3.4 \, \text{million USD annually}
+\]
+
+The present value of these floating payments over two years, discounted at the OIS rate of 3.4\%, is:
+
+\[
+PV_{\text{floating}} = 3.4 \times \frac{1}{(1 + 0.034)^1} + 103.4 \times \frac{1}{(1 + 0.034)^2}
+\]
+
+\[
+PV_{\text{floating}} = 3.4 \times 0.967 + 103.4 \times 0.935 = 3.288 + 96.679 = 99.967 \, \text{million USD}
+\]
+
+\subsection*{Step 3: Net Value of the Swap}
+The net value of the swap is the difference between the present values of the fixed and floating legs:
+
+\[
+\text{Swap Value} = PV_{\text{fixed}} - PV_{\text{floating}} = 99.206 - 99.967 = -0.761 \, \text{million USD}
+\]
+
+\end{solution}
+    
+\end{questions}
+\end{document}

@@ -1,0 +1,384 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{graphicx}%For centering solution box
+\lhead{IND ENG 221\\}
+\rhead{Kartikeya Sharma\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE IND ENG 221\\
+    \LARGE HW 2\\[0.5em]
+    \large \today\\[0.5em]
+    \large Kartikeya Sharma\par
+    \large SID: 3037376860\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+    \question A 1-year long forward contract on a non-dividend-paying stock is entered into when
+the stock price is \$40 and the risk-free rate of interest is \$5 per annum with continuous
+compounding.
+(a) What are the forward price and the initial value of the forward contract?
+(b) Six months later, the price of the stock is \$45 and the risk-free interest rate is still 5%.
+What are the forward price and the value of the forward contract? (Hull 5.17)
+    
+    \begin{solution}
+
+\textbf{(a) Forward Price and Initial Value of the Forward Contract:}
+
+The formula to calculate the forward price \( F_0 \) is given by:
+\[
+F_0 = S_0 e^{rT}
+\]
+where:
+- \( S_0 = 40 \) (current stock price),
+- \( r = 0.05 \) (risk-free interest rate),
+- \( T = 1 \) year (time to maturity).
+
+Substituting the values, we get:
+\[
+F_0 = 40 e^{0.05 \times 1} = 40 e^{0.05} \approx 40 \times 1.05127 \approx 42.05
+\]
+So, the forward price is approximately \( 42.05 \).
+
+The initial value of the forward contract is 0 because, when the forward contract is entered, it has no value.
+
+\[
+\text{Initial value of forward contract} = 0
+\]
+
+\textbf{(b) Forward Price and Value of the Forward Contract After Six Months:}
+
+Six months later, the time to maturity is \( T = 0.5 \) years. The formula for the new forward price \( F_0 \) is still:
+\[
+F_0 = S_0 e^{rT}
+\]
+where the current stock price is now \( S_0 = 45 \) and \( T = 0.5 \) years. Substituting the values, we get:
+\[
+F_0 = 45 e^{0.05 \times 0.5} = 45 e^{0.025} \approx 45 \times 1.02532 \approx 46.14
+\]
+So, the new forward price is approximately \( 46.14 \).
+
+Next, we calculate the value of the forward contract. The value of a long forward contract \( V_f \) after time \( t \) is given by:
+\[
+V_f = (S_t - F_0 e^{-r(T-t)})
+\]
+where:
+- \( S_t = 45 \) (current stock price),
+- \( F_0 = 42.05 \) (initial forward price),
+- \( r = 0.05 \) (risk-free rate),
+- \( T-t = 0.5 \) (remaining time).
+
+Substituting the values:
+\[
+V_f = 45 - 42.05 e^{-0.05 \times 0.5} = 45 - 42.05 \times e^{-0.025}\] \[\approx 45 - 42.05 \times 0.97531 \approx 45 - 41.01 \approx 3.99
+\]
+
+So, the value of the forward contract after six months is approximately \( 3.99 \).
+
+\end{solution}
+
+
+    \newpage
+    \question Repeat the problem 1) if the stock pays cash dividend of \$3 at the end of month 3 and month 9 (i.e., t = 0.25 and 0.75) and everything else are the same.
+
+    \begin{solution}
+
+\textbf{(a) Forward Price and Initial Value of the Forward Contract:}
+
+When a stock pays dividends, the forward price \( F_0 \) is adjusted to account for the present value of the dividends. The formula becomes:
+\[
+F_0 = \left(S_0 - \sum_{i=1}^{n} D_i e^{-r t_i} \right) e^{rT}
+\]
+where:
+- \( S_0 = 40 \) (current stock price),
+- \( r = 0.05 \) (risk-free interest rate),
+- \( D_1 = D_2 = 3 \) (dividend amounts),
+- \( t_1 = 0.25 \) years and \( t_2 = 0.75 \) years (time at which dividends are paid),
+- \( T = 1 \) year (time to maturity).
+
+We first calculate the present value of the dividends:
+\[
+PV(D_1) = 3 e^{-0.05 \times 0.25} = 3 e^{-0.0125} \approx 3 \times 0.98758 = 2.96274
+\]
+\[
+PV(D_2) = 3 e^{-0.05 \times 0.75} = 3 e^{-0.0375} \approx 3 \times 0.96315 = 2.88945
+\]
+
+Now, subtract the present value of the dividends from the stock price and calculate the forward price:
+\[
+F_0 = \left(40 - (2.96274 + 2.88945) \right) e^{0.05 \times 1} = \left(40 - 5.85219 \right) e^{0.05} \] \[\approx 34.14781 \times 1.05127 \approx 35.89
+\]
+
+So, the forward price is approximately \( 35.89 \).
+
+The initial value of the forward contract is still 0.
+
+\[
+\text{Initial value of forward contract} = 0
+\]
+
+\textbf{(b) Forward Price and Value of the Forward Contract After Six Months:}
+
+Six months later, the stock price is \( S_t = 45 \), and the time to maturity is \( T - t = 0.5 \) years. At this time, one dividend has already been paid at \( t_1 = 0.25 \), and one dividend is still to be paid at \( t_2 = 0.75 \). 
+
+We adjust the formula for the new forward price:
+\[
+F_0 = \left(S_t - D_2 e^{-r(T-t)}\right) e^{r(T-t)}
+\]
+where:
+- \( S_t = 45 \) (current stock price),
+- \( D_2 = 3 \) (dividend to be paid at \( t_2 = 0.75 \)),
+- \( r = 0.05 \) (risk-free rate),
+- \( T-t = 0.5 \) years (time to maturity).
+
+First, we calculate the present value of the remaining dividend:
+\[
+PV(D_2) = 3 e^{-0.05 \times 0.5} = 3 e^{-0.025} \approx 3 \times 0.97531 = 2.92593
+\]
+
+Now, calculate the new forward price:
+\[
+F_0 = \left(45 - 2.92593\right) e^{0.05 \times 0.5} = 42.07407 \times 1.02532 \approx 43.13
+\]
+
+So, the new forward price is approximately \( 43.13 \).
+
+Next, we calculate the value of the forward contract. The formula for the value of the forward contract \( V_f \) is:
+\[
+V_f = (S_t - PV(D_2) - F_0 e^{-r(T-t)})
+\]
+Substitute the values:
+\[
+V_f = 45 - 2.92593 - 35.89 e^{-0.05 \times 0.5} = 45 - 2.92593 - 35.89 \times 0.97531
+\]
+\[
+V_f \approx 45 - 2.92593 - 34.98 \approx 7.09
+\]
+
+So, the value of the forward contract after six months is approximately \( 7.09 \).
+
+\end{solution}
+
+
+    \pagebreak %Not necessary
+    
+    \question Assume that the risk-free interest rate is 4\% per annum with continuous compounding
+and that the dividend yield on a stock index varies throughout the year. In February, May,
+August, and November, dividends are paid at a rate of 5\% per annum. In other months,
+dividends are paid at a rate of 2\% per annum. Suppose that the value of the index on July
+31 is 1,300. What is the futures price for a contract deliverable in December 31 of the
+same year? (Hull 5.19)
+    
+
+    \begin{solution}
+
+To calculate the futures price on the stock index, we use the formula:
+\[
+F_0 = S_0 e^{(r - q)T}
+\]
+where:
+- \( F_0 \) is the futures price,
+- \( S_0 = 1300 \) (the current index value),
+- \( r = 0.04 \) (risk-free interest rate with continuous compounding),
+- \( q \) is the average dividend yield over the remaining period,
+- \( T \) is the time to maturity in years.
+
+Since dividends are paid at different rates throughout the year, we need to calculate the weighted average dividend yield for the remaining period (August to December).
+
+- From August to October (three months), the dividend yield is \( 0.05 \) (5% per annum).
+- From November to December (two months), the dividend yield is \( 0.02 \) (2% per annum).
+
+We calculate the weighted average dividend yield \( q \) for the remaining 5 months:
+\[
+q = \frac{3}{5} \times 0.05 + \frac{2}{5} \times 0.02 = 0.03 + 0.008 = 0.038
+\]
+
+So, the average dividend yield for the remaining period is \( q = 0.038 \).
+
+Next, we calculate \( T \), the time from July 31 to December 31 in years:
+\[
+T = \frac{5}{12} \text{ years} \approx 0.4167 \text{ years}
+\]
+
+Now, we can calculate the futures price using the formula:
+\[
+F_0 = 1300 e^{(0.04 - 0.038) \times 0.4167} = 1300 e^{0.002 \times 0.4167} \approx 1300 e^{0.000833} \] \[ \approx 1300 \times 1.00083 \approx 1301.08
+\]
+
+So, the futures price for a contract deliverable on December 31 is approximately \( 1301.08 \).
+
+\end{solution}
+
+
+    \newpage
+    \question Suppose that the risk-free interest rate is 6\% per annum with continuous compounding
+and that the dividend yield on a stock index is 4\% per annum. The index is standing at
+400, and the futures price for a contract deliverable in four months is 405. What arbitrage
+opportunities does this create? (Hull 5.20)
+
+    \begin{solution}
+
+We are given:
+- \( r = 0.06 \) (risk-free interest rate),
+- \( q = 0.04 \) (dividend yield),
+- \( S_0 = 400 \) (current index value),
+- \( F_0 = 405 \) (futures price),
+- \( T = \frac{4}{12} = \frac{1}{3} \) years (time to maturity).
+
+The theoretical futures price \( F_0 \) is given by the formula:
+\[
+F_0 = S_0 e^{(r - q)T}
+\]
+
+Substituting the given values:
+\[
+F_0 = 400 e^{(0.06 - 0.04) \times \frac{1}{3}} = 400 e^{0.02 \times \frac{1}{3}} = 400 e^{0.006667} \approx 400 \times 1.00667 \approx 402.67
+\]
+
+The theoretical futures price is approximately \( 402.67 \), but the actual futures price is \( 405 \).
+
+Since the actual futures price \( 405 \) is higher than the theoretical futures price \( 402.67 \), an arbitrage opportunity exists. We can take advantage of this by implementing the following arbitrage strategy:
+
+1. **Sell the futures contract** at \( 405 \) (short the futures contract).
+2. **Buy the stock index** at \( 400 \).
+3. **Borrow money** at the risk-free interest rate \( r = 6\% \).
+
+### Arbitrage Strategy:
+- At the start, borrow \( 400 \) at the risk-free rate to buy the index.
+- Receive the dividend yield \( q = 4\% \) from the index during the 4 months.
+- At the maturity of the futures contract (4 months later):
+  - Repay the loan (including interest) of \( 400 e^{0.06 \times \frac{1}{3}} \approx 400 \times 1.02 = 408 \).
+  - Deliver the index to settle the short futures position, which will provide \( 405 \).
+
+### Profit Calculation:
+- The cost to repay the loan is \( 408 \).
+- The amount received from delivering the stock index via the futures contract is \( 405 \).
+- The profit from the arbitrage is:
+\[
+\text{Profit} = 405 - 408 = -3
+\]
+Thus, the arbitrage opportunity results in a net loss of \( -3 \), indicating that this strategy isn't profitable.
+
+However, the mispricing indicates a different arbitrage approach may exist. The gap suggests potential gains could arise from a different borrowing/lending strategy or adjustments in short-selling processes.
+
+\end{solution}
+
+
+\newpage
+    \question The spot exchange rate between the Swiss franc and U.S. dollar is 1.0404 (\$ per franc).
+Interest rates in the United States and Switzerland are 0.25\% and 0\% per annum,
+respectively, with continuous compounding. The 3-month forward exchange rate was
+1.0300 (\$ per franc). What arbitrage strategy was possible? How does your answer
+change if the forward exchange rate is 1.0500 (\$ per franc). (Hull 5.32)
+
+    \begin{solution}
+
+We are given:
+- Spot exchange rate \( S_0 = 1.0404 \) USD/CHF (spot price of Swiss francs in terms of USD),
+- U.S. interest rate \( r_{\text{USD}} = 0.0025 \) (0.25% per annum),
+- Swiss interest rate \( r_{\text{CHF}} = 0 \) (0% per annum),
+- Time to maturity \( T = \frac{3}{12} = 0.25 \) years (3 months),
+- Forward exchange rate \( F_0 = 1.0300 \) USD/CHF (for the first scenario).
+
+### Step 1: Theoretical Forward Price Calculation
+
+The theoretical forward price \( F_{\text{theory}} \) is calculated using the formula:
+\[
+F_{\text{theory}} = S_0 e^{(r_{\text{USD}} - r_{\text{CHF}}) T}
+\]
+Substituting the given values:
+\[
+F_{\text{theory}} = 1.0404 e^{(0.0025 - 0) \times 0.25} = 1.0404 e^{0.000625} \approx 1.0404 \times 1.000625 \approx 1.0410
+\]
+
+The theoretical forward exchange rate is approximately \( 1.0410 \) USD/CHF.
+
+### Step 2: Arbitrage Strategy for Forward Rate \( F_0 = 1.0300 \)
+
+In this case, the actual forward rate \( F_0 = 1.0300 \) is lower than the theoretical forward rate \( 1.0410 \). This creates an arbitrage opportunity.
+
+#### Arbitrage Strategy:
+1. Borrow U.S. dollars at the U.S. interest rate \( r_{\text{USD}} = 0.25\% \).
+2. Convert the borrowed U.S. dollars to Swiss francs at the spot rate \( S_0 = 1.0404 \).
+3. Invest the Swiss francs at the Swiss interest rate \( r_{\text{CHF}} = 0\% \) for 3 months.
+4. Enter into a forward contract to convert Swiss francs back to U.S. dollars at the forward rate \( F_0 = 1.0300 \) after 3 months.
+
+### Step 3: Arbitrage Profit Calculation:
+
+- Borrow \( 1,000,000 \) USD at \( r_{\text{USD}} = 0.0025 \) for 3 months. After 3 months, the repayment amount will be:
+\[
+1,000,000 \times e^{0.0025 \times 0.25} \approx 1,000,000 \times 1.000625 \approx 1,000,625 \text{ USD}
+\]
+
+- Convert the borrowed \( 1,000,000 \) USD into Swiss francs at the spot rate \( S_0 = 1.0404 \):
+\[
+\frac{1,000,000}{1.0404} \approx 961,194.82 \text{ CHF}
+\]
+
+- Invest the \( 961,194.82 \) CHF at \( r_{\text{CHF}} = 0\% \), so after 3 months, you will still have \( 961,194.82 \) CHF.
+
+- At maturity, convert the \( 961,194.82 \) CHF back to USD using the forward rate \( F_0 = 1.0300 \):
+\[
+961,194.82 \times 1.0300 \approx 989,030.67 \text{ USD}
+\]
+
+The total arbitrage profit is the difference between the amount received and the repayment of the loan:
+\[
+\text{Profit} = 989,030.67 - 1,000,625 \approx -11,594.33 \text{ USD}
+\]
+
+This strategy results in a small loss, indicating no profitable arbitrage is available under this forward rate.
+
+### Step 4: Arbitrage Strategy for Forward Rate \( F_0 = 1.0500 \)
+
+Now, let the forward exchange rate be \( F_0 = 1.0500 \), which is higher than the theoretical forward rate \( 1.0410 \).
+
+#### Arbitrage Strategy:
+1. **Borrow Swiss francs** at the Swiss interest rate \( r_{\text{CHF}} = 0\% \).
+2. **Convert the Swiss francs** to U.S. dollars at the spot rate \( S_0 = 1.0404 \).
+3. **Invest the U.S. dollars** at the U.S. interest rate \( r_{\text{USD}} = 0.25\% \) for 3 months.
+4. **Enter into a forward contract** to convert U.S. dollars back to Swiss francs at the forward rate \( F_0 = 1.0500 \) after 3 months.
+
+### Step 5: Arbitrage Profit Calculation:
+
+- Borrow \( 1,000,000 \) CHF at \( r_{\text{CHF}} = 0\% \) for 3 months. After 3 months, the repayment amount will still be \( 1,000,000 \) CHF.
+  
+- Convert the \( 1,000,000 \) CHF into USD at the spot rate \( S_0 = 1.0404 \):
+\[
+1,000,000 \times 1.0404 = 1,040,400 \text{ USD}
+\]
+
+- Invest the \( 1,040,400 \) USD at \( r_{\text{USD}} = 0.25\% \) for 3 months. After 3 months, the investment will grow to:
+\[
+1,040,400 \times e^{0.0025 \times 0.25} \approx 1,040,400 \times 1.000625 \approx 1,041,050.25 \text{ USD}
+\]
+
+- At maturity, convert the \( 1,041,050.25 \) USD back to CHF using the forward rate \( F_0 = 1.0500 \):
+\[
+\frac{1,041,050.25}{1.0500} \approx 991,476.43 \text{ CHF}
+\]
+
+The arbitrage profit is the difference between the borrowed CHF and the CHF received from the forward contract:
+\[
+\text{Profit} = 1,000,000 - 991,476.43 = 8,523.57 \text{ CHF}
+\]
+
+Thus, in this case, the arbitrage strategy would result in a profit of \( 8,523.57 \) CHF.
+
+\end{solution}
+
+
+    
+\end{questions}
+\end{document}
