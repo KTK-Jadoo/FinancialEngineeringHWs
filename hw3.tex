@@ -35,47 +35,43 @@ of the swap to the party paying floating? What is the value to the party paying 
     
     \begin{solution}
 
-    \subsection*{Step 1: Present Value of the Fixed Leg}
-The fixed rate is 4\% annually, paid semiannually. The payment dates are in 6 months ($t_1 = 0.5$ years) and 10 months ($t_2 = \frac{10}{12} \approx 0.8333$ years). Each semiannual fixed payment is 2\% of the notional amount. 
+    \subsection*{Step 1: Present Value of Fixed Payments}
+The fixed rate is 4\% per annum, paid semiannually. The payment every 6 months is 2\% of the notional amount. Therefore, the fixed payment is:
 
-The present value of these payments is:
+\[
+\text{Fixed Payment} = 0.02 \times 100 = 2 \, \text{million USD}
+\]
+
+The present value of the fixed payments, discounted at the OIS rate of 2.7\% with continuous compounding, is:
 
 \[
 PV_{\text{fixed}} = 2 \times e^{-0.027 \times 0.5} + 102 \times e^{-0.027 \times 0.8333}
 \]
 
-where the first term represents the payment at $t_1$ and the second term includes the notional repayment ($100$ million) plus the final fixed payment.
-
-\subsection*{Step 2: Present Value of the Floating Leg}
-The floating rate payment for the first 6 months is based on the LIBOR rate of 2.4\%, which was set two months ago. Therefore, the floating payment at $t_1$ (in 6 months) is:
-
 \[
-\text{Floating Payment at } t_1 = 100 \times 2.4\% = 2.4 \text{ million USD}
+PV_{\text{fixed}} = 1.9732 + 99.7556 = 101.7288 \, \text{million USD}
 \]
 
-For the next floating rate payment at $t_2$, the forward rate is 3\%. Therefore, the floating payment at $t_2$ (in 10 months) is:
-
-\[
-\text{Floating Payment at } t_2 = 100 \times 3\% = 3 \text{ million USD}
-\]
-
-The present value of the floating leg is:
+\subsection*{Step 2: Present Value of Floating Payments}
+The floating rate payments are based on six-month LIBOR. The first payment is based on 2.4\%, and the second payment is based on the forward rate of 3\%. The present value of the floating payments is:
 
 \[
 PV_{\text{floating}} = 2.4 \times e^{-0.027 \times 0.5} + 103 \times e^{-0.027 \times 0.8333}
 \]
 
-where the $103$ million includes the notional plus the final floating payment.
+\[
+PV_{\text{floating}} = 2.3678 + 100.7103 = 103.0781 \, \text{million USD}
+\]
 
 \subsection*{Step 3: Net Value of the Swap}
 
-The value of the swap to the party paying fixed is the difference between the present values of the floating and fixed legs:
+The net value of the swap is the difference between the present values of the floating and fixed legs:
 
 \[
-\text{Value to Fixed Payer} = PV_{\text{floating}} - PV_{\text{fixed}}
+\text{Swap Value} = PV_{\text{floating}} - PV_{\text{fixed}} = 103.0781 - 101.7288 = 1.3493 \, \text{million USD}
 \]
 
-The value of the swap to the party paying floating is the negative of the above value.
+\textbf{Conclusion:} The value of the swap to the party paying floating is 1.3493 million USD, while the value to the party paying fixed is -1.3493 million USD.
 
 
 \end{solution}
@@ -92,54 +88,52 @@ swap to the party paying sterling? What is the value of the swap to the party pa
 dollars? (Hull 7.14)
 
     \begin{solution}
-    \subsection*{Step 1: Value of Sterling Payments}
+    \subsection*{Step 1: Present Value of GBP Payments}
 
-The party paying GBP will pay 10\% of £20 million at the end of the first year, i.e.,
+The party paying GBP will pay 10\% of £20 million, i.e., £2 million in 12 months, and repay the notional £20 million in 15 months. The present value of these payments is discounted at the UK risk-free rate of 7\%:
 
 \[
-\text{GBP Payment} = 0.10 \times 20 = 2 \, \text{million GBP}
+PV_{\text{GBP}} = 2 \times \frac{1}{(1 + 0.07)^1} + 20 \times \frac{1}{(1 + 0.07)^{1.25}}
 \]
 
-Additionally, the notional £20 million will be paid back at the end of 15 months. The present value of these payments, discounted at the UK risk-free rate of 7\%, is:
-
 \[
-PV_{\text{GBP}} = 2 \times e^{-0.07 \times 1} + 20 \times e^{-0.07 \times \frac{15}{12}}
+PV_{\text{GBP}} = 1.8692 + 18.408 = 20.2772 \, \text{million GBP}
 \]
 
-\subsection*{Step 2: Value of Dollar Payments}
+\subsection*{Step 2: Present Value of USD Payments}
 
-The party paying USD will pay 6\% of \$30 million at the end of the first year, i.e.,
+The party paying USD will pay 6\% of \$30 million, i.e., \$1.8 million in 12 months, and repay the notional \$30 million in 15 months. The present value of these payments is discounted at the US risk-free rate of 4\%:
 
 \[
-\text{USD Payment} = 0.06 \times 30 = 1.8 \, \text{million USD}
+PV_{\text{USD}} = 1.8 \times \frac{1}{(1 + 0.04)^1} + 30 \times \frac{1}{(1 + 0.04)^{1.25}}
 \]
 
-Additionally, the notional \$30 million will be paid back at the end of 15 months. The present value of these payments, discounted at the US risk-free rate of 4\%, is:
-
 \[
-PV_{\text{USD}} = 1.8 \times e^{-0.04 \times 1} + 30 \times e^{-0.04 \times \frac{15}{12}}
+PV_{\text{USD}} = 1.7307 + 28.571 = 30.3017 \, \text{million USD}
 \]
 
 \subsection*{Step 3: Convert GBP Payments to USD}
 
-The present value of the GBP payments in USD, using the exchange rate of 1.5500 USD/GBP, is:
+The present value of the GBP payments in USD is:
 
 \[
-PV_{\text{GBP in USD}} = 1.5500 \times PV_{\text{GBP}}
+PV_{\text{GBP in USD}} = 20.2772 \times 1.5500 = 31.4297 \, \text{million USD}
 \]
 
-\subsection*{Step 4: Value of the Swap to Each Party}
+\subsection*{Step 4: Net Value of the Swap}
 
-The value of the swap to the party paying sterling is:
+The value of the swap to the party paying GBP is:
 
 \[
-\text{Value to GBP Payer} = PV_{\text{USD}} - PV_{\text{GBP in USD}}
+\text{Value to GBP Payer} = PV_{\text{GBP in USD}} - PV_{\text{USD}}
 \]
+= 31.4297 - 30.3017 = 1.128 \, \text{million USD}
 
-The value of the swap to the party paying dollars is:
+
+The value of the swap to the party paying USD is:
 
 \[
-\text{Value to USD Payer} = -(\text{Value to GBP Payer})
+\text{Value to USD Payer} = -1.128 \, \text{million USD}
 \]
 
 

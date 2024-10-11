@@ -1,0 +1,490 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{graphicx}%For centering solution box
+\lhead{IND ENG 221\\}
+\rhead{Kartikeya Sharma\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+\newenvironment{question}[1]{\noindent\textbf{#1}\par}{\par}
+\begingroup  
+    \centering
+    \LARGE IND ENG 221\\
+    \LARGE HW 5\\[0.5em]
+    \large \today\\[0.5em]
+    \large Kartikeya Sharma\par
+    \large SID: 3037376860\par
+\endgroup
+
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{question}{Question 1:} A stock price is currently \$100. Over each of the next two 6-month periods, it is expected to go up by 10\% or down by 10\%. The risk-free interest rate is 8\% per annum with continuous compounding. What is the value of a 1-year European call option with a strike price of \$100? (Hull 13.11)
+\end{question}
+
+\begin{solution}
+\textbf{Given:}
+\begin{itemize}
+    \item Initial stock price: \( S_0 = 100 \)
+    \item Up factor: \( u = 1.1 \)
+    \item Down factor: \( d = 0.9 \)
+    \item Strike price: \( K = 100 \)
+    \item Risk-free rate: \( r = 8\% \) per annum (continuously compounded)
+    \item Time to maturity: \( T = 1 \) year, split into two 6-month periods.
+\end{itemize}
+
+\textbf{Step 1: Risk-neutral probability}
+
+The risk-neutral probability is calculated as:
+
+\[
+p = \frac{e^{r \Delta t} - d}{u - d}
+\]
+
+where \( \Delta t = 0.5 \) (for 6 months).
+
+Substitute the values:
+
+\[
+p = \frac{e^{0.08 \times 0.5} - 0.9}{1.1 - 0.9} = \frac{e^{0.04} - 0.9}{0.2}
+\]
+
+\[
+p \approx \frac{1.0408 - 0.9}{0.2} = \frac{0.1408}{0.2} = 0.704
+\]
+
+Thus, the risk-neutral probability \( p \approx 0.704 \), and the probability of a down move is \( 1 - p = 0.296 \).
+
+\textbf{Step 2: Binomial tree for stock prices}
+
+At \( t = 0 \), the stock price is \( S_0 = 100 \). After 6 months:
+
+\[
+S_u = S_0 \times u = 100 \times 1.1 = 110
+\]
+\[
+S_d = S_0 \times d = 100 \times 0.9 = 90
+\]
+
+After another 6 months, the stock prices are:
+
+\[
+S_{uu} = 110 \times 1.1 = 121
+\]
+\[
+S_{ud} = S_{du} = 110 \times 0.9 = 99
+\]
+\[
+S_{dd} = 90 \times 0.9 = 81
+\]
+
+\textbf{Step 3: Payoff at maturity}
+
+The payoff for the call option at maturity is \( \max(S_T - K, 0) \).
+
+\[
+C_{uu} = \max(121 - 100, 0) = 21
+\]
+\[
+C_{ud} = \max(99 - 100, 0) = 0
+\]
+\[
+C_{dd} = \max(81 - 100, 0) = 0
+\]
+
+\textbf{Step 4: Work backward to calculate the option price}
+
+At \( t = 1 \) (6 months), the value of the option is the discounted expected value of the option price at the next step. The discount factor is \( e^{-r \Delta t} = e^{-0.04} \approx 0.9608 \).
+
+For the node where the stock price is 110:
+
+\[
+C_u = e^{-0.04} \left( p \times C_{uu} + (1 - p) \times C_{ud} \right)
+\]
+\[
+C_u = 0.9608 \left( 0.704 \times 21 + 0.296 \times 0 \right) = 0.9608 \times 14.784 = 14.205
+\]
+
+For the node where the stock price is 90:
+
+\[
+C_d = e^{-0.04} \left( p \times C_{ud} + (1 - p) \times C_{dd} \right) = 0
+\]
+
+\textbf{Step 5: Calculate the value of the option at \( t = 0 \)}
+
+Finally, the value of the option at \( t = 0 \) is:
+
+\[
+C_0 = e^{-0.04} \left( p \times C_u + (1 - p) \times C_d \right)
+\]
+\[
+C_0 = 0.9608 \left( 0.704 \times 14.205 + 0.296 \times 0 \right)
+\]
+\[
+C_0 = 0.9608 \times 9.998 \approx 9.6
+\]
+
+Thus, the value of the 1-year European call option is approximately \( \boxed{9.60} \).
+
+\end{solution}
+
+    \newpage
+
+\begin{question}{Question 2:}
+For the situation considered in Problem 1, what is the value of a 1-year European put option with a strike price of \$100? Verify that the European call and European put prices satisfy put-call parity. (Hull 13.12)
+\end{question}
+
+\begin{solution}
+\textbf{Part 1: Value of the European put option}
+
+\textbf{Given:}
+\begin{itemize}
+    \item Initial stock price: \( S_0 = 100 \)
+    \item Strike price: \( K = 100 \)
+    \item Up factor: \( u = 1.1 \)
+    \item Down factor: \( d = 0.9 \)
+    \item Risk-free rate: \( r = 8\% \) per annum (continuously compounded)
+    \item Time to maturity: \( T = 1 \) year, split into two 6-month periods.
+    \item Risk-neutral probability: \( p = 0.704 \), \( 1 - p = 0.296 \)
+\end{itemize}
+
+From the stock price tree in Problem 1, the stock prices at each node are:
+
+\[
+S_{uu} = 121, \quad S_{ud} = S_{du} = 99, \quad S_{dd} = 81
+\]
+
+\textbf{Step 1: Payoff of the put option at maturity}
+
+The payoff for the European put option is \( \max(K - S_T, 0) \).
+
+\[
+P_{uu} = \max(100 - 121, 0) = 0
+\]
+\[
+P_{ud} = \max(100 - 99, 0) = 1
+\]
+\[
+P_{dd} = \max(100 - 81, 0) = 19
+\]
+
+\textbf{Step 2: Work backward to calculate the put option price}
+
+At \( t = 1 \) (6 months), the value of the put option is the discounted expected value of the option price at the next step. The discount factor is \( e^{-r \Delta t} = e^{-0.04} \approx 0.9608 \).
+
+For the node where the stock price is 110:
+\[
+P_u = e^{-0.04} \left( p \times P_{uu} + (1 - p) \times P_{ud} \right)
+\]
+\[
+P_u = 0.9608 \left( 0.704 \times 0 + 0.296 \times 1 \right)
+\]
+\[
+P_u = 0.9608 \times 0.296 = 0.285
+\]
+
+For the node where the stock price is 90:
+\[
+P_d = e^{-0.04} \left( p \times P_{ud} + (1 - p) \times P_{dd} \right)
+\]
+\[
+P_d = 0.9608 \left( 0.704 \times 1 + 0.296 \times 19 \right)
+\]
+\[
+P_d = 0.9608 \times 6.328 = 6.08
+\]
+
+\textbf{Step 3: Calculate the value of the put option at \( t = 0 \)}
+
+Finally, the value of the put option at \( t = 0 \) is:
+\[
+P_0 = e^{-0.04} \left( p \times P_u + (1 - p) \times P_d \right)
+\]
+\[
+P_0 = 0.9608 \left( 0.704 \times 0.285 + 0.296 \times 6.08 \right)
+\]
+\[
+P_0 = 0.9608 \times (0.200 + 1.799) = 0.9608 \times 1.999 = 1.922
+\]
+
+Thus, the value of the 1-year European put option is approximately \( \boxed{1.92} \).
+
+\textbf{Part 2: Verifying put-call parity}
+
+The put-call parity relationship is:
+\[
+C_0 + K e^{-rT} = P_0 + S_0
+\]
+
+Where:
+\begin{itemize}
+    \item \( C_0 = 9.60 \) (from Problem 1)
+    \item \( P_0 = 1.92 \)
+    \item \( K = 100 \)
+    \item \( r = 0.08 \)
+    \item \( S_0 = 100 \)
+    \item \( T = 1 \)
+\end{itemize}
+
+\textbf{Left-hand side (LHS):}
+\[
+C_0 + K e^{-rT} = 9.60 + 100 \times e^{-0.08}
+\]
+\[
+C_0 + K e^{-rT} = 9.60 + 100 \times 0.9231 = 9.60 + 92.31 = 101.91
+\]
+
+\textbf{Right-hand side (RHS):}
+\[
+P_0 + S_0 = 1.92 + 100 = 101.92
+\]
+
+Since both sides are approximately equal (with a small difference due to rounding), the put-call parity holds:
+\[
+C_0 + K e^{-rT} \approx P_0 + S_0
+\]
+
+\textbf{Conclusion:}
+The value of the 1-year European put option is approximately \( \boxed{1.92} \), and the European call and put prices satisfy the put-call parity.
+\end{solution}
+
+\newpage
+    
+   \begin{question}{Question 3:}
+The current price of a non-dividend-paying biotech stock is \$140 with a volatility of 25\%. The risk-free rate is 4\%. For a 3-month time step:
+\begin{itemize}
+    \item (a) What is the percentage up movement?
+    \item (b) What is the percentage down movement?
+    \item (c) What is the probability of an up movement in a risk-neutral world?
+    \item (d) What is the probability of a down movement in a risk-neutral world?
+\end{itemize}
+Use a two-step tree to value a 6-month European call option and a 6-month European put option. In both cases, the strike price is \$150. (Hull 13.24)
+\end{question}
+
+\begin{solution}
+
+\textbf{Part (a) and (b): Percentage up and down movements}
+
+Given:
+\begin{itemize}
+    \item Stock price: \( S_0 = 140 \)
+    \item Volatility: \( \sigma = 25\% \)
+    \item Risk-free rate: \( r = 4\% \)
+    \item Time step: \( \Delta t = 3 \) months = \( 0.25 \) years
+\end{itemize}
+
+The up factor \( u \) and down factor \( d \) can be calculated as:
+
+\[
+u = e^{\sigma \sqrt{\Delta t}} = e^{0.25 \times \sqrt{0.25}} = e^{0.125} \approx 1.1331
+\]
+\[
+d = \frac{1}{u} = \frac{1}{1.1331} \approx 0.8826
+\]
+
+Thus, the percentage up movement is approximately \( 13.31\% \), and the percentage down movement is approximately \( 11.74\% \).
+
+\textbf{Part (c) and (d): Probabilities in a risk-neutral world}
+
+The risk-neutral probability \( p \) of an up movement is given by:
+
+\[
+p = \frac{e^{r \Delta t} - d}{u - d}
+\]
+
+Substituting the values:
+
+\[
+p = \frac{e^{0.04 \times 0.25} - 0.8826}{1.1331 - 0.8826} = \frac{e^{0.01} - 0.8826}{0.2505} \approx \frac{1.01005 - 0.8826}{0.2505} \approx 0.509
+\]
+
+The probability of a down movement is:
+
+\[
+1 - p = 1 - 0.509 = 0.491
+\]
+
+Thus, the probability of an up movement is approximately \( 50.9\% \), and the probability of a down movement is approximately \( 49.1\% \).
+
+\textbf{Two-step tree for European call and put options}
+
+The strike price for both options is \( K = 150 \), and the time to maturity is 6 months, so we use a two-step binomial tree with two 3-month periods.
+
+\textbf{Step 1: Stock price evolution}
+
+At \( t = 0 \), the stock price is \( S_0 = 140 \). After 3 months:
+\[
+S_u = 140 \times u = 140 \times 1.1331 = 158.63
+\]
+\[
+S_d = 140 \times d = 140 \times 0.8826 = 123.56
+\]
+
+After another 3 months:
+\[
+S_{uu} = 158.63 \times u = 158.63 \times 1.1331 \approx 179.71
+\]
+\[
+S_{ud} = S_{du} = 158.63 \times d = 158.63 \times 0.8826 \approx 140
+\]
+\[
+S_{dd} = 123.56 \times d = 123.56 \times 0.8826 \approx 109.01
+\]
+
+\textbf{Step 2: Payoffs at expiration}
+
+For the call option:
+
+\[
+C_{uu} = \max(S_{uu} - K, 0) = \max(179.71 - 150, 0) = 29.71
+\]
+\[
+C_{ud} = \max(S_{ud} - K, 0) = \max(140 - 150, 0) = 0
+\]
+\[
+C_{dd} = \max(S_{dd} - K, 0) = \max(109.01 - 150, 0) = 0
+\]
+
+For the put option:
+
+\[
+P_{uu} = \max(K - S_{uu}, 0) = \max(150 - 179.71, 0) = 0
+\]
+\[
+P_{ud} = \max(K - S_{ud}, 0) = \max(150 - 140, 0) = 10
+\]
+\[
+P_{dd} = \max(K - S_{dd}, 0) = \max(150 - 109.01, 0) = 40.99
+\]
+
+\textbf{Step 3: Work backward to calculate the option prices at \( t = 0 \)}
+
+The discount factor for 3 months is \( e^{-r \Delta t} = e^{-0.01} \approx 0.99005 \).
+
+For the call option at \( t = 3 \) months:
+
+\[
+C_u = e^{-0.01} \left( p \times C_{uu} + (1 - p) \times C_{ud} \right) = 0.99005 \left( 0.509 \times 29.71 + 0.491 \times 0 \right) = 0.99005 \times 15.12 = 14.97
+\]
+\[
+C_d = e^{-0.01} \left( p \times C_{ud} + (1 - p) \times C_{dd} \right) = 0
+\]
+
+At \( t = 0 \):
+
+\[
+C_0 = e^{-0.01} \left( p \times C_u + (1 - p) \times C_d \right) = 0.99005 \left( 0.509 \times 14.97 + 0.491 \times 0 \right) = 0.99005 \times 7.617 = 7.54
+\]
+
+Thus, the value of the 6-month European call option is approximately \( \boxed{7.54} \).
+
+For the put option at \( t = 3 \) months:
+
+\[
+P_u = e^{-0.01} \left( p \times P_{uu} + (1 - p) \times P_{ud} \right) = 0.99005 \times 4.91 = 4.86
+\]
+\[
+P_d = e^{-0.01} \left( p \times P_{ud} + (1 - p) \times P_{dd} \right) = 0.99005 \times 24.94 = 24.69
+\]
+
+At \( t = 0 \):
+
+\[
+P_0 = e^{-0.01} \left( p \times P_u + (1 - p) \times P_d \right) = 0.99005 \times 14.46 = 14.32
+\]
+
+Thus, the value of the 6-month European put option is approximately \( \boxed{14.32} \).
+
+\end{solution}
+
+\newpage
+
+\begin{question}{Question 4:}
+In Problem 3, suppose a trader sells 10,000 European call options and the two-step tree describes the behavior of the stock. How many shares of the stock are needed to hedge the 6-month European call for the first and second 3-month period? For the second time period, consider both the case where the stock price moves up during the first period and the case where it moves down during the first period. (Hull 13.25)
+\end{question}
+
+\begin{solution}
+
+\textbf{Step 1: Hedge ratio (delta)}
+
+The hedge ratio \( \Delta \) is calculated as:
+\[
+\Delta = \frac{C_u - C_d}{S_u - S_d}
+\]
+
+Where \( C_u \) and \( C_d \) are the option values after an up and down movement, and \( S_u \) and \( S_d \) are the stock prices after an up and down movement.
+
+\textbf{Step 2: Stock prices and option values from Problem 3}
+
+From Problem 3, the stock prices after the first time step are:
+\[
+S_u = 158.63, \quad S_d = 123.56
+\]
+And the option values after one time step are:
+\[
+C_u = 14.97, \quad C_d = 0
+\]
+
+\textbf{Step 3: Hedge ratio for the first 3-month period}
+
+\[
+\Delta = \frac{C_u - C_d}{S_u - S_d} = \frac{14.97 - 0}{158.63 - 123.56} = \frac{14.97}{35.07} \approx 0.427
+\]
+Thus, the number of shares needed to hedge 10,000 call options is:
+\[
+\text{Total shares} = 0.427 \times 10,000 = 4,270
+\]
+
+\textbf{Step 4: Hedge ratio for the second 3-month period}
+
+For the second period, we calculate the hedge ratio in two cases:
+
+\textbf{Case 1: Stock price moves up in the first period}
+
+If the stock price moves up to \( S_u = 158.63 \), the second-step stock prices are:
+\[
+S_{uu} = 179.71, \quad S_{ud} = 140
+\]
+The option payoffs are:
+\[
+C_{uu} = 29.71, \quad C_{ud} = 0
+\]
+The hedge ratio is:
+\[
+\Delta_u = \frac{C_{uu} - C_{ud}}{S_{uu} - S_{ud}} = \frac{29.71}{39.71} \approx 0.748
+\]
+Thus, the number of shares needed to hedge 10,000 call options is:
+\[
+\text{Total shares} = 0.748 \times 10,000 = 7,480
+\]
+
+\textbf{Case 2: Stock price moves down in the first period}
+
+If the stock price moves down to \( S_d = 123.56 \), the second-step stock prices are:
+\[
+S_{du} = 140, \quad S_{dd} = 109.01
+\]
+The option payoffs are both 0, so:
+\[
+\Delta_d = \frac{C_{du} - C_{dd}}{S_{du} - S_{dd}} = 0
+\]
+Thus, no shares are needed in this case.
+
+\textbf{Conclusion:}
+\begin{itemize}
+    \item In the first 3-month period, the trader needs 4,270 shares to hedge the sale of 10,000 call options.
+    \item In the second 3-month period:
+    \begin{itemize}
+        \item If the stock price moves up, the trader needs 7,480 shares.
+        \item If the stock price moves down, no shares are needed.
+    \end{itemize}
+\end{itemize}
+
+\end{solution}
+    
+\end{document}
