@@ -1,0 +1,425 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{graphicx}%For centering solution box
+\lhead{IND ENG 221\\}
+\rhead{Kartikeya Sharma\\}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+\newenvironment{question}[1]{\noindent\textbf{#1}\par}{\par}
+\begingroup  
+    \centering
+    \LARGE IND ENG 221\\
+    \LARGE Midterm\\[0.5em]
+    \large \today\\[0.5em]
+    \large Kartikeya Sharma\par
+    \large SID: 3037376860\par
+\endgroup
+
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{question} 1
+A corporate bond was issued at par 3.5 years ago with a notional value of \$1000 and an 8\% coupon rate paid annually when the risk-free rate was 2\% (annual compounding). The bond has 5.5 years remaining until maturity and is traded in the market. The current risk-free discount curve is 4.5\% (annual compounding), and the bond is currently traded at \$1028.50.
+
+\begin{itemize}
+    \item (a) What is the present value of the bond under the risk-free discount curve?
+    \item (b) The bond is currently traded at \$1028.50. What is its internal yield of return (YTM, annual compounding)?
+    \item (c) What can you say about changes in the company’s financial health since it issued the bond?
+\end{itemize}
+\end{question}
+
+\begin{solution}
+
+\begin{itemize}
+    \item \textbf{Part (a): Present Value of the Bond}
+
+    The present value of the bond is calculated by discounting the future cash flows (coupon payments and face value) at the current risk-free rate of 4.5\% with annual compounding. The bond pays \$80 annually for the next 5.5 years, with a final repayment of the face value (\$1000) at maturity (5.5 years). The present value (\(PV\)) is given by:
+
+    \[
+    PV = \sum_{i=1}^{5} \frac{80}{(1 + 0.045)^i} + \frac{80 + 1000}{(1 + 0.045)^{5.5}}
+    \]
+
+    After performing the calculations:
+
+    \[
+    PV \approx 1206.80 \, \text{USD}
+    \]
+
+    Thus, the present value of the bond under the current risk-free discount curve is approximately \$1206.80.
+
+    \item \textbf{Part (b): Yield to Maturity (YTM)}
+
+    The yield to maturity (YTM) is the interest rate that equates the present value of the bond’s future cash flows to its current market price of \$1028.50. This requires solving the following equation for \( r \) (YTM):
+
+    \[
+    1028.50 = \sum_{i=1}^{5} \frac{80}{(1 + r)^i} + \frac{80 + 1000}{(1 + r)^{5.5}}
+    \]
+
+    Through iterative calculation, we find that the bond’s yield to maturity is approximately:
+
+    \[
+    YTM \approx 8.24\% \, \text{(annual compounding)}
+    \]
+
+    \item \textbf{Part (c): Company’s Financial Health}
+
+    The bond was originally issued at par when the risk-free rate was 2\%. Now, it is trading above par at \$1028.50, while the risk-free rate has increased to 4.5\%. The bond’s price being above par suggests that the company's financial situation has improved since the bond was issued. Investors perceive the bond to be less risky relative to other market opportunities, causing its price to increase. However, the bond's YTM is still higher than the coupon rate (8\%), indicating that overall market conditions have changed, possibly due to higher general interest rates.
+    
+\end{itemize}
+
+\end{solution}
+
+\newpage
+
+\begin{question} 2
+An interest rate swap that exchanges IBOR with a fixed rate of 3.0\% semiannually has 20 months remaining. Its notional is \$100M. The 6-month IBOR fixed 4 months ago is 4\%. The IBOR forward for 2 to 8 months, 8 to 14 months, and 14 to 20 months are 4.5\%, 4.85\%, and 5.25\%. The 2, 8, 14, and 20 month OIS rates (continuous compounding) are 3.25\%, 3.75\%, 4\%, and 4.25\% respectively. What is the value of the swap holder who pays the fixed rate? Ignore counterparty credit risk.
+\end{question}
+
+
+\begin{solution}
+
+The value of the swap is calculated by determining the present value of the floating leg and the fixed leg, then finding the difference between them to compute the net value of the swap.
+
+\begin{itemize}
+    \item \textbf{Step 1: Value of the Floating Leg}
+
+    The floating leg is based on IBOR and is calculated using the forward rates for the upcoming periods. The floating payments are given as:
+    
+    \begin{itemize}
+        \item For 6 months: IBOR fixed at 4\%
+        \item For 12 months: IBOR forward for 8 to 14 months = 4.85\%
+        \item For 20 months: IBOR forward for 14 to 20 months = 5.25\%
+    \end{itemize}
+    
+    The present value of the floating leg, discounted using the OIS rates, is:
+    
+    \[
+    \text{Floating leg value} \approx 13.49 \, \text{million USD}
+    \]
+    
+    \item \textbf{Step 2: Value of the Fixed Leg}
+    
+    The fixed leg has semiannual payments based on the 3\% fixed rate. Each payment is 1.5\% of the notional (\$100M), plus the notional repayment at the end. The fixed payments are:
+    
+    \begin{itemize}
+        \item Payment at 6 months: \$1.5M
+        \item Payment at 12 months: \$1.5M
+        \item Payment at 20 months: \$1.5M + \$100M (notional repayment)
+    \end{itemize}
+    
+    The present value of the fixed leg is:
+    
+    \[
+    \text{Fixed leg value} \approx 97.61 \, \text{million USD}
+    \]
+    
+    \item \textbf{Step 3: Net Value of the Swap}
+    
+    The value of the swap to the party paying the fixed rate is the difference between the floating leg and the fixed leg:
+    
+    \[
+    \text{Swap value} = 13.49 \, \text{million USD} - 97.61 \, \text{million USD} = -84.12 \, \text{million USD}
+    \]
+    
+    Thus, the value of the swap for the fixed-rate payer is approximately -84.12 million USD.
+    
+\end{itemize}
+
+\end{solution}
+
+
+\newpage
+
+\begin{question} 3
+A client asked a financial institution to quote on a 3-year forward on an illiquid stock. The stock is currently quoted at (bid/ask) 100/102. The company pays yearly dividends of \$6 per share, with the last dividend paid 6 months ago. The risk-free interest rate is 4.5\% (continuous compounding). What forward price should the financial institution quote to the client if:
+\begin{itemize}
+    \item (a) The client wants to take a long position in the forward,
+    \item (b) The client wants to take a short position in the forward.
+\end{itemize}
+\end{question}
+
+\begin{solution}
+The forward price is calculated using the formula:
+
+\[
+F_0 = S_0 e^{rT} - D
+\]
+
+Where:
+\begin{itemize}
+    \item \( S_0 \) is the current stock price (ask price for a long position, bid price for a short position),
+    \item \( r = 4.5\% \) is the risk-free rate (continuous compounding),
+    \item \( T = 3 \) years is the time to maturity,
+    \item \( D \) is the present value of the dividend payments over 3 years.
+\end{itemize}
+
+The dividends expected are \$6 per year. The present value of these dividends is:
+
+\[
+D = 6 e^{-0.045 \times 0.5} + 6 e^{-0.045 \times 1.5} + 6 e^{-0.045 \times 2.5} \approx 16.84 \, \text{USD}
+\]
+
+\begin{itemize}
+    \item \textbf{(a) Long Position:} Using the ask price of 102, the forward price is:
+
+    \[
+    F_0 = 102 e^{0.045 \times 3} - 16.84 \approx 99.91 \, \text{USD}
+    \]
+
+    \item \textbf{(b) Short Position:} Using the bid price of 100, the forward price is:
+
+    \[
+    F_0 = 100 e^{0.045 \times 3} - 16.84 \approx 97.62 \, \text{USD}
+    \]
+\end{itemize}
+
+Thus, the forward price quoted for the long position is approximately 99.91 USD, and for the short position is approximately 97.62 USD.
+
+\end{solution}
+
+\newpage
+
+\begin{question} 4
+A stock S is currently traded at \$100. A one-year European put with strike \( K_1 = 90 \) is traded at 5.65. Another one-year European put with strike \( K_2 = 110 \) is traded at 15.25. The risk-free interest rate is 4\% (continuous compounding). S pays no dividends.
+
+\begin{itemize}
+    \item (a) What is the cost of setting up a long one-year European strangle with \( K_1 = 90 \) and \( K_2 = 110 \)?
+    \item (b) One year from now, in what range must S be for this strangle trade to be profitable?
+\end{itemize}
+\end{question}
+
+\begin{solution}
+
+\begin{itemize}
+    \item \textbf{Part (a): Cost of the Strangle}
+    
+    A long strangle involves buying two put options:
+    \begin{itemize}
+        \item A put with strike \( K_1 = 90 \), priced at 5.65,
+        \item A put with strike \( K_2 = 110 \), priced at 15.25.
+    \end{itemize}
+    
+    The total cost of setting up the strangle is the sum of the two option prices:
+    
+    \[
+    \text{Cost} = 5.65 + 15.25 = 20.90 \, \text{USD}
+    \]
+    
+    Thus, the cost of setting up the long strangle is \$20.90.
+
+    \item \textbf{Part (b): Profitability Range}
+    
+    The strangle will be profitable if the stock price is either below \( K_1 = 90 \) or above \( K_2 = 110 \).
+    
+    \textbf{Case 1: Stock Price below \( K_1 = 90 \)}
+    
+    The payoff is:
+    
+    \[
+    \text{Payoff} = 90 - S_T
+    \]
+    
+    For profitability:
+    
+    \[
+    90 - S_T > 20.90 \quad \Rightarrow \quad S_T < 69.10
+    \]
+    
+    \textbf{Case 2: Stock Price above \( K_2 = 110 \)}
+    
+    The payoff is:
+    
+    \[
+    \text{Payoff} = S_T - 110
+    \]
+    
+    For profitability:
+    
+    \[
+    S_T - 110 > 20.90 \quad \Rightarrow \quad S_T > 130.90
+    \]
+    
+    Thus, the strangle will be profitable if the stock price is less than \$69.10 or greater than \$130.90.
+    
+\end{itemize}
+
+\end{solution}
+
+\newpage
+
+
+\begin{question} 5
+Suppose we are in a world where no risk-free asset exists (cash may lose value). Two stocks, \( S_A \) and \( S_B \), are both currently valued at 100. The world may improve or worsen next month with probabilities 60\% and 40\% respectively. When the world improves, \( S_A \) will increase to 110 and \( S_B \) will increase to 120. When the world worsens, \( S_A \) will decrease to 90 and \( S_B \) will decrease to 80. Neither stock pays dividends. What is the price of a one-month call option on \( S_A \) with strike 100?
+\end{question}
+
+\begin{solution}
+
+We are given the following information:
+\begin{itemize}
+    \item Probabilities: 60\% chance of improvement, 40\% chance of worsening.
+    \item Improvement scenario: \( S_A = 110 \), \( S_B = 120 \).
+    \item Worsening scenario: \( S_A = 90 \), \( S_B = 80 \).
+    \item Call option strike price on \( S_A \): 100.
+\end{itemize}
+
+\textbf{Step 1: Payoff of the Call Option}
+
+The payoff of the one-month call option on \( S_A \) is:
+
+\[
+\text{Payoff} = \max(S_A - 100, 0)
+\]
+
+For the improvement scenario (\( S_A = 110 \)): 
+\[
+\text{Payoff} = 110 - 100 = 10
+\]
+
+For the worsening scenario (\( S_A = 90 \)): 
+\[
+\text{Payoff} = \max(90 - 100, 0) = 0
+\]
+
+\textbf{Step 2: Replicating Portfolio}
+
+We construct a replicating portfolio with \( \Delta_A \) shares of \( S_A \) and \( \Delta_B \) shares of \( S_B \). The portfolio's value must replicate the option's payoff:
+
+\[
+\Delta_A \times 110 + \Delta_B \times 120 = 10
+\]
+\[
+\Delta_A \times 90 + \Delta_B \times 80 = 0
+\]
+
+Solving these equations gives us:
+
+\[
+\Delta_A = -0.40, \quad \Delta_B = 0.45
+\]
+
+\textbf{Step 3: Cost of the Replicating Portfolio}
+
+The current cost of the replicating portfolio is:
+
+\[
+\text{Cost} = \Delta_A \times 100 + \Delta_B \times 100
+\]
+\[
+\text{Cost} = (-0.40 \times 100) + (0.45 \times 100) = -40 + 45 = 5
+\]
+
+Thus, the price of the one-month call option on \( S_A \) is \(\boxed{5}\).
+
+\end{solution}
+
+
+\newpage
+
+\begin{question} 6
+A non-dividend paying stock is currently traded at \$80. The annualized volatility is 32\%. The risk-free interest rate is 4.5\% (continuous compounding). Using a two-step CRR binomial tree, price the value of:
+\begin{itemize}
+    \item (a) A one-year European put option with strike = 82,
+    \item (b) A one-year American put option with strike = 82.
+\end{itemize}
+\end{question}
+
+\begin{solution}
+
+\textbf{Step 1: CRR Binomial Model Parameters}
+
+We use the following parameters:
+\begin{itemize}
+    \item Stock price \( S_0 = 80 \),
+    \item Strike price \( K = 82 \),
+    \item Volatility \( \sigma = 32\% \),
+    \item Risk-free rate \( r = 4.5\% \) (continuous compounding),
+    \item Time to maturity \( T = 1 \) year,
+    \item Number of steps in the binomial tree \( n = 2 \).
+\end{itemize}
+
+The time per step is \( \Delta t = \frac{T}{n} = 0.5 \) years.
+
+The up factor is \( u = e^{\sigma \sqrt{\Delta t}} \approx 1.2330 \), and the down factor is \( d = \frac{1}{u} \approx 0.8110 \).
+
+The risk-neutral probability is:
+
+\[
+p = \frac{e^{r \Delta t} - d}{u - d} \approx 0.5280.
+\]
+
+\textbf{Step 2: Stock Prices at Each Node}
+
+We calculate the stock prices at each node:
+\begin{itemize}
+    \item \( S_{\text{up, up}} = 80 \times u^2 \approx 98.8649 \),
+    \item \( S_{\text{up, down}} = 80 \times u \times d = 80 \),
+    \item \( S_{\text{down, down}} = 80 \times d^2 \approx 52.0309 \).
+\end{itemize}
+
+\textbf{Step 3: Payoff at Maturity (European and American Puts)}
+
+The payoffs at the terminal nodes for a put option with strike price 82 are:
+\begin{itemize}
+    \item Payoff at \( S_{\text{up, up}} \): \( \max(82 - 98.8649, 0) = 0 \),
+    \item Payoff at \( S_{\text{up, down}} \): \( \max(82 - 80, 0) = 2 \),
+    \item Payoff at \( S_{\text{down, down}} \): \( \max(82 - 52.0309, 0) = 29.9691 \).
+\end{itemize}
+
+\textbf{Step 4: Option Values (European)}
+
+Working backwards, we compute the option values at the previous step for the European option:
+
+\[
+V_{\text{up}} = e^{-r \Delta t} \times (p \times 0 + (1 - p) \times 2) \approx 0.9906
+\]
+\[
+V_{\text{down}} = e^{-r \Delta t} \times (p \times 2 + (1 - p) \times 29.9691) \approx 15.7866
+\]
+
+Finally, the European put option value is:
+
+\[
+V_{\text{initial}} = e^{-r \Delta t} \times (p \times 0.9906 + (1 - p) \times 15.7866) \approx 8.5915.
+\]
+
+\textbf{Step 5: Option Values (American)}
+
+For the American option, we check for early exercise. The intrinsic values at the first step are:
+
+\[
+\text{Intrinsic value at up node} = \max(82 - 80 \times u, 0) = 0,
+\]
+\[
+\text{Intrinsic value at down node} = \max(82 - 80 \times d, 0) = 18.1800.
+\]
+
+Thus, the American put option values are:
+
+\[
+V_{\text{up, American}} = \max(0.9906, 0) = 0.9906,
+\]
+\[
+V_{\text{down, American}} = \max(15.7866, 18.1800) = 18.1800.
+\]
+
+Finally, the American put option value is:
+
+\[
+V_{\text{initial, American}} = e^{-r \Delta t} \times (p \times 0.9906 + (1 - p) \times 18.1800) \approx 9.4889.
+\]
+
+Thus, the option values are:
+\begin{itemize}
+    \item European put option value: \( \boxed{8.5915} \),
+    \item American put option value: \( \boxed{9.4889} \).
+\end{itemize}
+
+\end{solution}
+
+
+\end{document}
