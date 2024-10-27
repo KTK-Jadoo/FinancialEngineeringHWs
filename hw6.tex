@@ -1,0 +1,323 @@
+\documentclass[12pt,letterpaper,onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{graphicx}%For centering solution box
+\lhead{IND ENG 221\\}
+\rhead{Kartikeya Sharma\\}
+\thispagestyle{empty} %For removing header/footer from page 1
+
+\begin{document}
+
+\newenvironment{question}[1]{\noindent\textbf{#1}\par}{\par}
+
+
+% Main Heading Section
+\begingroup  
+    \centering
+    \LARGE IND ENG 221\\
+    \LARGE HW 6\\[0.5em]
+    \large \today\\[0.5em]
+    \large Kartikeya Sharma\par
+    \large SID: 3037376860\par
+\endgroup
+
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Ans:}\enspace}
+
+% Question 1
+\begin{question}{Question 1:}
+A company’s cash position, measured in millions of dollars, follows a generalized Wiener process with a drift rate of 0.5 per quarter and a variance rate of 4.0 per quarter. How high does the company’s initial cash position have to be for the company to have a less than 5\% chance of a negative cash position by the end of 1 year? (Hull 14.12)
+\end{question}
+
+\begin{solution}
+The cash position follows a generalized Wiener process:
+\[
+X_T = X_0 + \mu T + \sigma W_T
+\]
+Where:
+\begin{itemize}
+    \item \( X_T \) is the cash position at time \( T \) (1 year or 4 quarters),
+    \item \( X_0 \) is the initial cash position,
+    \item \( \mu = 0.5 \) is the drift rate per quarter,
+    \item \( \sigma = 2.0 \) is the standard deviation per quarter,
+    \item \( W_T \) is a Wiener process (standard Brownian motion).
+\end{itemize}
+
+We are given that \( T = 4 \) quarters, and we need to find \( X_0 \) such that there is less than a 5\% chance of a negative cash position at the end of 1 year, i.e., \( P(X_T < 0) < 0.05 \).
+
+\textbf{Step 1: Cash Position Distribution}
+
+At time \( T = 4 \), the cash position \( X_T \) follows a normal distribution with:
+\[
+X_T \sim N(X_0 + \mu T, \sigma^2 T)
+\]
+For \( T = 4 \):
+\[
+X_T \sim N(X_0 + 2, 16)
+\]
+Thus, \( X_T \) has a mean of \( X_0 + 2 \) and a standard deviation of 4.
+
+\textbf{Step 2: Z-Score Calculation}
+
+We need \( P(X_T < 0) < 0.05 \). This corresponds to a Z-score of approximately \( Z = -1.645 \).
+
+Using the Z-score formula:
+\[
+Z = \frac{0 - (X_0 + 2)}{4} = -1.645
+\]
+
+\textbf{Step 3: Solve for \( X_0 \)}
+
+Solving for \( X_0 \):
+\[
+\frac{-(X_0 + 2)}{4} = -1.645
+\]
+\[
+X_0 + 2 = 1.645 \times 4 = 6.58
+\]
+\[
+X_0 = 6.58 - 2 = 4.58
+\]
+
+Thus, the company’s initial cash position must be at least \( \boxed{4.58} \, \text{million USD} \) to have less than a 5\% chance of a negative cash position by the end of the year.
+
+\end{solution}
+
+\newpage
+
+
+% Question 2
+\begin{question}{Question 2:}
+The process for the stock price in the lecture is
+\[
+\Delta S = \mu S \Delta t + \sigma S \Delta W_t \quad (\ast)
+\]
+where \( \mu \) and \( \sigma \) are constant. Explain carefully the difference between this model and each of the following:
+\[
+1. \, \Delta S = \mu \Delta t + \sigma \Delta W_t
+\]
+\[
+2. \, \Delta S = \mu S \Delta t + \sigma \Delta W_t
+\]
+\[
+3. \, \Delta S = \mu \Delta t + \sigma S \Delta W_t
+\]
+Why is the model in equation \( (\ast) \) a more appropriate model of stock price behavior than any of these three alternatives? (Hull 14.17)
+\end{question}
+
+\begin{solution}
+The equation \( \Delta S = \mu S \Delta t + \sigma S \Delta W_t \) describes the stock price as following a **geometric Brownian motion** (GBM) with both a drift term proportional to the stock price and a volatility term that scales with the stock price. This is the standard model used to describe stock price dynamics in financial mathematics.
+
+\textbf{Comparison with the alternatives:}
+
+\textbf{1. \( \Delta S = \mu \Delta t + \sigma \Delta W_t \):}
+\begin{itemize}
+    \item In this model, the drift (\( \mu \Delta t \)) and volatility (\( \sigma \Delta W_t \)) are constant and independent of the stock price \( S \).
+    \item This suggests that the stock price changes by a fixed amount \( \mu \) on average and fluctuates by a constant volatility \( \sigma \), regardless of the stock price level.
+    \item This model is unrealistic because it implies that small and large stock prices would experience the same absolute fluctuations, whereas in reality, larger stock prices tend to have larger absolute movements.
+\end{itemize}
+
+\textbf{2. \( \Delta S = \mu S \Delta t + \sigma \Delta W_t \):}
+\begin{itemize}
+    \item In this case, the drift term is proportional to the stock price (\( \mu S \Delta t \)), which is realistic because the stock price is expected to grow or decline at a rate proportional to its current value.
+    \item However, the volatility term is constant (\( \sigma \Delta W_t \)), meaning that the magnitude of the fluctuations is independent of the stock price.
+    \item This model is also not realistic because it implies that fluctuations do not scale with the stock price, which contradicts observed market behavior where stocks with higher prices experience larger fluctuations in absolute terms.
+\end{itemize}
+
+\textbf{3. \( \Delta S = \mu \Delta t + \sigma S \Delta W_t \):}
+\begin{itemize}
+    \item Here, the volatility term scales with the stock price (\( \sigma S \Delta W_t \)), which is more realistic because the magnitude of fluctuations increases as the stock price increases.
+    \item However, the drift term is constant (\( \mu \Delta t \)), which means the stock price is expected to grow by a fixed amount, regardless of its current value.
+    \item This is inconsistent with how stock prices behave, as stocks with higher prices should have larger expected absolute growth rates.
+\end{itemize}
+
+\textbf{Why the model in equation \( (\ast) \) is more appropriate:}
+
+The model \( \Delta S = \mu S \Delta t + \sigma S \Delta W_t \) combines both a **proportional drift** term and a **proportional volatility** term, making it the most realistic representation of stock price behavior. Specifically:
+\begin{itemize}
+    \item The drift term \( \mu S \Delta t \) ensures that the expected return grows proportionally with the stock price, reflecting the idea that a higher-priced stock should experience greater absolute growth.
+    \item The volatility term \( \sigma S \Delta W_t \) ensures that fluctuations in the stock price also scale with the stock price, which aligns with the fact that larger stock prices have larger absolute price changes.
+\end{itemize}
+
+This model is the foundation of geometric Brownian motion (GBM) and is widely used in option pricing models, such as the Black-Scholes model, for accurately modeling stock prices over time.
+
+\end{solution}
+
+\newpage
+
+% Question 3
+\begin{question}{Question 3:}
+Suppose that a stock price \( S \) follows geometric Brownian motion with expected return \( \mu \) and volatility \( \sigma \):
+\[
+dS = \mu S dt + \sigma S dW_t
+\]
+What is the process followed by the variable \( S^n \)? Show that \( S^n \) also follows geometric Brownian motion. (Hull 14.19)
+\end{question}
+
+\begin{solution}
+
+We are given that the stock price \( S \) follows the geometric Brownian motion:
+\[
+dS = \mu S dt + \sigma S dW_t
+\]
+We want to find the process followed by \( S^n \) for some constant \( n \), and show that it also follows geometric Brownian motion.
+
+\textbf{Step 1: Apply Itô’s Lemma}
+
+Itô's Lemma states that for a function \( f(S) \), where \( S \) follows a stochastic process \( dS \), the differential of \( f(S) \) is given by:
+
+\[
+df(S) = \frac{\partial f}{\partial S} dS + \frac{1}{2} \frac{\partial^2 f}{\partial S^2} (\sigma S)^2 dt
+\]
+
+Let \( f(S) = S^n \). We now compute the first and second derivatives of \( f(S) \):
+\[
+\frac{\partial f}{\partial S} = nS^{n-1}
+\]
+\[
+\frac{\partial^2 f}{\partial S^2} = n(n-1)S^{n-2}
+\]
+
+Using these in Itô's Lemma:
+
+\[
+d(S^n) = nS^{n-1} dS + \frac{1}{2} n(n-1) S^{n-2} (\sigma S)^2 dt
+\]
+
+Substitute the expression for \( dS = \mu S dt + \sigma S dW_t \):
+
+\[
+d(S^n) = nS^{n-1} (\mu S dt + \sigma S dW_t) + \frac{1}{2} n(n-1) S^{n-2} \sigma^2 S^2 dt
+\]
+
+Simplify the expression:
+
+\[
+d(S^n) = n\mu S^n dt + n\sigma S^n dW_t + \frac{1}{2} n(n-1) \sigma^2 S^n dt
+\]
+
+\textbf{Step 2: Final Form of the Stochastic Differential Equation}
+
+We can now rewrite the expression for \( d(S^n) \) as:
+
+\[
+d(S^n) = S^n \left( n\mu + \frac{1}{2} n(n-1) \sigma^2 \right) dt + n\sigma S^n dW_t
+\]
+
+This is a stochastic differential equation of the form:
+
+\[
+d(S^n) = \tilde{\mu} S^n dt + \tilde{\sigma} S^n dW_t
+\]
+
+where:
+\[
+\tilde{\mu} = n\mu + \frac{1}{2}n(n-1)\sigma^2
+\]
+\[
+\tilde{\sigma} = n\sigma
+\]
+
+\textbf{Conclusion:} 
+
+Since the differential equation for \( S^n \) is of the same form as the original equation for \( S \), we conclude that \( S^n \) also follows geometric Brownian motion with:
+\begin{itemize}
+    \item Drift \( \tilde{\mu} = n\mu + \frac{1}{2}n(n-1)\sigma^2 \),
+    \item Volatility \( \tilde{\sigma} = n\sigma \).
+\end{itemize}
+
+Thus, we have shown that \( S^n \) follows a geometric Brownian motion.
+
+\end{solution}
+
+
+\newpage
+
+
+% Question 4
+\begin{question}{Question 4:}
+Suppose that a stock price has an expected return of 16\% per annum and a volatility of 30\% per annum. When the stock price at the end of a certain day is \$50, calculate the following:
+\begin{itemize}
+    \item (a) The expected stock price at the end of the next day.
+    \item (b) The standard deviation of the stock price at the end of the next day.
+    \item (c) The 95\% confidence limits for the stock price at the end of the next day.
+\end{itemize}
+Assume the stock price follows geometric Brownian motion, and there are 250 trading days per year (i.e., 1 day = \( \frac{1}{250} \) year). (Hull 14.22)
+\end{question}
+
+\begin{solution}
+
+\textbf{Part (a): Expected Stock Price at the End of the Next Day}
+
+The expected stock price under geometric Brownian motion is given by:
+\[
+E(S_T) = S_0 e^{\mu \Delta t}
+\]
+where:
+\begin{itemize}
+    \item \( S_0 = 50 \) (initial stock price),
+    \item \( \mu = 0.16 \) (annual expected return),
+    \item \( \Delta t = \frac{1}{250} \) (time increment for 1 day).
+\end{itemize}
+
+Substitute the values:
+\[
+E(S_T) = 50 e^{0.16 \times \frac{1}{250}} = 50 e^{0.00064}
+\]
+\[
+E(S_T) \approx 50 \times 1.0006402 \approx 50.0320
+\]
+
+Thus, the expected stock price at the end of the next day is approximately \( \boxed{50.0320} \).
+
+\textbf{Part (b): Standard Deviation of the Stock Price at the End of the Next Day}
+
+The standard deviation of the stock price is given by:
+\[
+\text{Std}(S_T) = S_0 \sigma \sqrt{\Delta t}
+\]
+where:
+\begin{itemize}
+    \item \( \sigma = 0.30 \) (annual volatility),
+    \item \( \Delta t = \frac{1}{250} \) (time increment for 1 day).
+\end{itemize}
+
+Substitute the values:
+\[
+\text{Std}(S_T) = 50 \times 0.30 \times \sqrt{\frac{1}{250}} = 50 \times 0.30 \times \frac{1}{\sqrt{250}}
+\]
+\[
+\text{Std}(S_T) \approx 50 \times 0.30 \times 0.0632456 \approx 0.949
+\]
+
+Thus, the standard deviation of the stock price at the end of the next day is approximately \( \boxed{0.9490} \).
+
+\textbf{Part (c): 95\% Confidence Limits for the Stock Price at the End of the Next Day}
+
+The 95\% confidence interval for the stock price is given by:
+\[
+\text{Confidence limits} = E(S_T) \pm 1.96 \times \text{Std}(S_T)
+\]
+Substitute the values:
+\[
+\text{Confidence limits} = 50.0320 \pm 1.96 \times 0.9490
+\]
+\[
+\text{Confidence limits} = 50.0320 \pm 1.858
+\]
+
+Thus, the 95\% confidence limits for the stock price are:
+\[
+\text{Lower limit} = 50.0320 - 1.858 \approx 48.174
+\]
+\[
+\text{Upper limit} = 50.0320 + 1.858 \approx 51.890
+\]
+
+Therefore, the 95\% confidence limits for the stock price at the end of the next day are approximately \( \boxed{[48.174, 51.890]} \).
+
+\end{solution}
+
+\end{document}
