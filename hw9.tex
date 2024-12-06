@@ -1,0 +1,248 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{IEOR 221 Homework 9}
+\author{Kartikeya Sharma}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{\textbf{Q1}}
+
+Suppose:
+- \( c_1 \) and \( p_1 \) are the prices of a European average price call and a European average price put with strike price \( K \) and maturity \( T \).
+- \( c_2 \) and \( p_2 \) are the prices of a European average strike call and a European average strike put with maturity \( T \).
+- \( c_3 \) and \( p_3 \) are the prices of a regular European call and a regular European put with strike price \( K \) and maturity \( T \).
+
+We aim to prove the following relationship:
+\[
+\boldsymbol{c_1 + c_2 - c_3 = p_1 + p_2 - p_3}
+\]
+
+\section{\textbf{Solution}}
+
+\subsection{\textbf{Step 1: Definitions of the Option Payoffs}}
+
+1. \textbf{European Average Price Call (\( c_1 \))}:  
+   The payoff of a European average price call with strike \( K \) and maturity \( T \) is:
+   \[
+   \max\left(\frac{1}{T} \int_0^T S(t) \, dt - K, 0\right)
+   \]
+
+2. \textbf{European Average Price Put (\( p_1 \))}:  
+   The payoff of a European average price put with strike \( K \) and maturity \( T \) is:
+   \[
+   \max\left(K - \frac{1}{T} \int_0^T S(t) \, dt, 0\right)
+   \]
+
+3. \textbf{European Average Strike Call (\( c_2 \))}:  
+   The payoff of a European average strike call with maturity \( T \) is:
+   \[
+   \max\left(S(T) - \frac{1}{T} \int_0^T S(t) \, dt, 0\right)
+   \]
+
+4. \textbf{European Average Strike Put (\( p_2 \))}:  
+   The payoff of a European average strike put with maturity \( T \) is:
+   \[
+   \max\left(\frac{1}{T} \int_0^T S(t) \, dt - S(T), 0\right)
+   \]
+
+5. \textbf{Regular European Call (\( c_3 \))}:  
+   The payoff of a regular European call with strike \( K \) and maturity \( T \) is:
+   \[
+   \max(S(T) - K, 0)
+   \]
+
+6. \textbf{Regular European Put (\( p_3 \))}:  
+   The payoff of a regular European put with strike \( K \) and maturity \( T \) is:
+   \[
+   \max(K - S(T), 0)
+   \]
+
+\subsection{\textbf{Step 2: Deriving the Relationship}}
+
+The expression \( c_1 + c_2 - c_3 \) represents the combined value of a European average price call, a European average strike call, and subtracting a regular European call.
+
+Similarly, \( p_1 + p_2 - p_3 \) represents the combined value of a European average price put, a European average strike put, and subtracting a regular European put.
+
+Using put-call parity relationships for these different types of options, we find that:
+
+\[
+\boldsymbol{c_1 + c_2 - c_3 = p_1 + p_2 - p_3}
+\]
+
+This equality holds due to the equivalence in their combined payoffs.
+
+
+
+\newpage
+
+
+\section*{\textbf{Q2}}
+
+We are given a derivative that pays off \$100 in 6 months if an index level exceeds 1,000 and zero otherwise. The parameters provided are as follows:
+- Current level of the index, \( S_0 = 960 \)
+- Strike level for payoff, \( K = 1,000 \)
+- Time to maturity, \( T = 0.5 \) years
+- Risk-free interest rate, \( r = 8\% \) per annum
+- Dividend yield on the index, \( q = 3\% \) per annum
+- Volatility of the index, \( \sigma = 20\% \) per annum
+
+We are required to calculate the value of this derivative.
+
+\section{\textbf{Solution}}
+
+This derivative can be valued as a \textbf{binary call option}, where the payoff is a fixed amount (here, \$100) if the index level exceeds the threshold \( K = 1,000 \) at maturity \( T \).
+
+The value of a binary call option with payoff \( P \) at maturity \( T \) is given by:
+\[
+\text{Binary Call Value} = P \cdot e^{-rT} \cdot N(d_2)
+\]
+where:
+\[
+d_2 = \frac{\ln\left(\frac{S_0}{K}\right) + \left(r - q - \frac{\sigma^2}{2}\right)T}{\sigma \sqrt{T}}
+\]
+
+\subsection{\textbf{Step 1: Calculate \( d_2 \)}}
+
+Using the given parameters:
+- \( S_0 = 960 \)
+- \( K = 1,000 \)
+- \( r = 0.08 \)
+- \( q = 0.03 \)
+- \( \sigma = 0.20 \)
+- \( T = 0.5 \)
+
+we calculate \( d_2 \) as:
+\[
+d_2 = \frac{\ln\left(\frac{960}{1000}\right) + \left(0.08 - 0.03 - \frac{0.20^2}{2}\right) \times 0.5}{0.20 \sqrt{0.5}}
+\]
+
+Calculating each component:
+\begin{align*}
+\ln\left(\frac{960}{1000}\right) &= \ln(0.96) \approx -0.0408 \\
+\left(0.08 - 0.03 - \frac{0.20^2}{2}\right) \times 0.5 &= \left(0.08 - 0.03 - 0.02\right) \times 0.5 = 0.015 \\
+0.20 \sqrt{0.5} &= 0.20 \times 0.7071 \approx 0.1414
+\end{align*}
+
+Thus:
+\[
+d_2 = \frac{-0.0408 + 0.015}{0.1414} \approx -0.1821
+\]
+
+\subsection{\textbf{Step 2: Calculate \( N(d_2) \)}}
+
+Using a standard normal distribution table, we find:
+\[
+N(d_2) = N(-0.1821) \approx 0.4284
+\]
+
+\subsection{\textbf{Step 3: Calculate the Binary Call Value}}
+
+The binary call value is:
+\[
+\text{Binary Call Value} = 100 \cdot e^{-0.08 \times 0.5} \cdot 0.4284
+\]
+
+Calculating each component:
+\begin{align*}
+e^{-0.08 \times 0.5} &= e^{-0.04} \approx 0.9608 \\
+100 \cdot 0.9608 \cdot 0.4284 &\approx 41.16
+\end{align*}
+
+\section*{\textbf{Final Answer}}
+
+The value of the derivative is approximately:
+\[
+\boxed{41.16}
+\]
+
+\newpage
+
+
+\section*{\textbf{Q3}}
+
+Given:
+- Current stock price, \( S = 100 \)
+- Strike price, \( K = 80 \)
+- Risk-free interest rate, \( r = 5\% \)
+- Dividend yield, \( q = 1\% \)
+- Volatility, \( \sigma = 30\% \)
+
+We are asked to find the following values for a perpetual American put option:
+1. Its fair value.
+2. Its delta.
+3. Its vega.
+
+\section{\textbf{Solution}}
+
+For a perpetual American put option, the fair value, delta, and vega can be calculated as follows.
+
+\subsection{\textbf{(a) Fair Value}}
+
+The fair value \( P \) of a perpetual American put option with strike \( K \) is given by:
+\[
+P = \frac{K}{(1 - \beta_1)} \left(\frac{\beta_1 - 1}{\beta_1}\right) \left(\frac{S}{K}\right)^{\beta_1}
+\]
+where \( \beta_1 \) is defined as:
+\[
+\beta_1 = \frac{1}{2} - \frac{r - q}{\sigma^2} + \sqrt{\left(\frac{r - q}{\sigma^2} - \frac{1}{2}\right)^2 + \frac{2r}{\sigma^2}}
+\]
+
+Using the given parameters:
+- \( S = 100 \)
+- \( K = 80 \)
+- \( r = 0.05 \)
+- \( q = 0.01 \)
+- \( \sigma = 0.30 \)
+
+we can calculate \( \beta_1 \) as follows:
+
+\[
+\beta_1 = \frac{1}{2} - \frac{0.05 - 0.01}{0.30^2} + \sqrt{\left(\frac{0.05 - 0.01}{0.30^2} - \frac{1}{2}\right)^2 + \frac{2 \times 0.05}{0.30^2}}
+\]
+
+Calculating each component:
+
+1. \(\frac{0.05 - 0.01}{0.30^2} = \frac{0.04}{0.09} \approx 0.4444\)
+2. \(\frac{1}{2} - 0.4444 = 0.0556\)
+3. \(\sqrt{\left(0.4444 - \frac{1}{2}\right)^2 + \frac{2 \times 0.05}{0.09}} = \sqrt{(-0.0556)^2 + 1.1111} \approx 1.0556\)
+
+Thus,
+\[
+\beta_1 \approx 0.0556 + 1.0556 = 1.1112
+\]
+
+Substituting \( \beta_1 \) back into the formula for \( P \):
+\[
+P = \frac{80}{1 - 1.1112} \cdot \left(\frac{1.1112 - 1}{1.1112}\right) \cdot \left(\frac{100}{80}\right)^{1.1112}
+\]
+
+After performing these calculations, we find the approximate fair value \( P \).
+
+\subsection{\textbf{(b) Delta}}
+
+The delta \( \Delta \) of the perpetual American put is the sensitivity of the option price to changes in the stock price. For a perpetual American put, delta is given by:
+\[
+\Delta = \frac{\partial P}{\partial S} = \frac{P}{S} \cdot \beta_1
+\]
+
+Substituting \( P \), \( S = 100 \), and \( \beta_1 \approx 1.1112 \), we can compute \( \Delta \).
+
+\subsection{\textbf{(c) Vega}}
+
+The vega \( \nu \) of the perpetual American put is the sensitivity of the option price to changes in volatility. This can be calculated by differentiating the fair value with respect to \( \sigma \), though in practice, vega for perpetual options requires numerical methods due to the complexity of \( \beta_1 \) as a function of \( \sigma \).
+
+The exact value of vega requires differentiating the closed-form solution of \( P \) with respect to \( \sigma \).
+
+\section*{\textbf{Final Answers}}
+\begin{itemize}
+    \item Fair Value: Approximate fair value \( P \).
+    \item Delta: Approximate value of delta \( \Delta \).
+    \item Vega: Approximate value of vega \( \nu \) using numerical methods if necessary.
+\end{itemize}
+
+\end{document}

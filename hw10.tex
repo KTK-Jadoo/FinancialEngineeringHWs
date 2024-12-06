@@ -1,0 +1,210 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{IEOR 221 Homework 10}
+\author{Kartikeya Sharma}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{\textbf{Q1}}
+
+\subsection*{\textbf{1(a) Standard Deviations of Stocks A and B}}
+
+The total standard deviation of a stock is given by:
+\[
+\sigma = \sqrt{\beta^2 \cdot \sigma_m^2 + \sigma_{\text{firm}}^2}
+\]
+where:
+- \( \beta \): Stock's beta,
+- \( \sigma_m = 22\% \): Market standard deviation,
+- \( \sigma_{\text{firm}} \): Firm-specific standard deviation.
+
+\textbf{Stock A:}
+\[
+\sigma_A = \sqrt{(0.8^2 \cdot 0.22^2) + 0.30^2} = \sqrt{(0.0576) + 0.09} = 0.3478 \, \text{or } 34.78\%.
+\]
+
+\textbf{Stock B:}
+\[
+\sigma_B = \sqrt{(1.2^2 \cdot 0.22^2) + 0.40^2} = \sqrt{(0.1392) + 0.16} = 0.4793 \, \text{or } 47.93\%.
+\]
+
+\subsection*{\textbf{1(b) Portfolio Analysis}}
+
+The portfolio is constructed with the following weights:
+- \( w_A = 30\% = 0.3 \),
+- \( w_B = 45\% = 0.45 \),
+- \( w_{\text{rf}} = 25\% = 0.25 \).
+
+\textbf{Expected Return of the Portfolio:}
+\[
+E(r_p) = w_A \cdot r_A + w_B \cdot r_B + w_{\text{rf}} \cdot r_{\text{rf}}
+\]
+Substituting:
+\[
+E(r_p) = (0.3 \cdot 0.13) + (0.45 \cdot 0.18) + (0.25 \cdot 0.08) = 0.039 + 0.081 + 0.02 = 0.14 \, \text{or } 14\%.
+\]
+
+\textbf{Portfolio Beta:}
+\[
+\beta_p = w_A \cdot \beta_A + w_B \cdot \beta_B + w_{\text{rf}} \cdot \beta_{\text{rf}}
+\]
+Since \( \beta_{\text{rf}} = 0 \):
+\[
+\beta_p = (0.3 \cdot 0.8) + (0.45 \cdot 1.2) = 0.24 + 0.54 = 0.78.
+\]
+
+\textbf{Portfolio Standard Deviation:}
+\[
+\sigma_p = \sqrt{\beta_p^2 \cdot \sigma_m^2 + \left(w_A^2 \cdot \sigma_{\text{firm,A}}^2 + w_B^2 \cdot \sigma_{\text{firm,B}}^2\right)}
+\]
+
+Systematic Variance:
+\[
+\text{Systematic Variance} = \beta_p^2 \cdot \sigma_m^2 = (0.78^2) \cdot (0.22^2) = 0.0295.
+\]
+
+Nonsystematic Variance:
+\[
+\text{Nonsystematic Variance} = (0.3^2 \cdot 0.3^2) + (0.45^2 \cdot 0.4^2) = 0.0081 + 0.0324 = 0.0405.
+\]
+
+Total Portfolio Variance:
+\[
+\text{Total Variance} = 0.0295 + 0.0405 = 0.07.
+\]
+
+Portfolio Standard Deviation:
+\[
+\sigma_p = \sqrt{0.07} = 0.2645 \, \text{or } 26.45\%.
+\]
+
+\newpage
+
+\section*{\textbf{Q2}}
+
+\subsection*{\textbf{2(a) Expected Selling Price}}
+
+Using the Capital Asset Pricing Model (CAPM):
+\[
+E(r) = r_{\text{f}} + \beta \cdot (r_{\text{m}} - r_{\text{f}})
+\]
+Substitute \( r_{\text{f}} = 6\%, r_{\text{m}} = 16\%, \beta = 1.2 \):
+\[
+E(r) = 0.06 + 1.2 \cdot (0.16 - 0.06) = 0.06 + 0.12 = 0.18 \, \text{or } 18\%.
+\]
+
+Expected Selling Price:
+\[
+P_1 = (P_0 \cdot (1 + E(r))) - \text{Dividend}
+\]
+Substitute \( P_0 = 50, \text{Dividend} = 6 \):
+\[
+P_1 = (50 \cdot 1.18) - 6 = 59 - 6 = 53.
+\]
+
+\subsection*{\textbf{2(b) Firm Valuation}}
+
+The perpetual value of a firm is given by:
+\[
+V = \frac{\text{Cash Flow}}{r}
+\]
+where \( r = r_{\text{f}} + \beta \cdot (r_{\text{m}} - r_{\text{f}}) \).
+
+For \( \beta = 0.5 \):
+\[
+r = 0.06 + 0.5 \cdot (0.16 - 0.06) = 0.11.
+\]
+\[
+V = \frac{100,000}{0.11} = 909,090.91.
+\]
+
+For \( \beta = 1.0 \):
+\[
+r = 0.06 + 1.0 \cdot (0.16 - 0.06) = 0.16.
+\]
+\[
+V = \frac{100,000}{0.16} = 625,000.
+\]
+
+\subsection*{\textbf{2(c) Stock Beta}}
+
+Rearranging the CAPM equation:
+\[
+\beta = \frac{E(r) - r_{\text{f}}}{r_{\text{m}} - r_{\text{f}}}
+\]
+
+Substitute \( E(r) = 4\%, r_{\text{f}} = 6\%, r_{\text{m}} = 16\% \):
+\[
+\beta = \frac{0.04 - 0.06}{0.16 - 0.06} = \frac{-0.02}{0.10} = -0.2.
+\]
+
+
+\newpage
+
+
+\section*{\textbf{Q3}}
+
+\subsection*{\textbf{(a) Should You Invest in This Fund?}}
+
+To decide whether to invest, compare the fund's expected return with its required return based on the Capital Asset Pricing Model (CAPM). The CAPM required return is calculated as:
+\[
+r = r_f + \beta \cdot (r_m - r_f)
+\]
+
+Substitute the values:
+\[
+r = 0.05 + 0.8 \cdot (0.15 - 0.05)
+\]
+\[
+r = 0.05 + 0.8 \cdot 0.1 = 0.05 + 0.08 = 0.13 \, \text{or } 13\%.
+\]
+
+The fund's expected return is \( 14\% \), which is higher than the CAPM required return of \( 13\% \). Therefore, the fund offers a higher return than required for its level of risk, and it would be a good investment.
+
+\textbf{Decision: Yes, you should invest in this fund.}
+
+\subsection*{\textbf{(b) Passive Portfolio with Same Beta as the Fund}}
+
+A passive portfolio can be constructed by combining a market-index portfolio and a money market account. Let \( w_m \) be the proportion invested in the market portfolio, and \( w_f \) be the proportion invested in the risk-free asset. The beta of the portfolio is given by:
+\[
+\beta_{\text{portfolio}} = w_m \cdot \beta_m + w_f \cdot \beta_f
+\]
+
+Since:
+- \( \beta_m = 1 \) (market portfolio beta),
+- \( \beta_f = 0 \) (money market account beta),
+- \( \beta_{\text{portfolio}} = 0.8 \) (fund's beta),
+
+we have:
+\[
+0.8 = w_m \cdot 1 + w_f \cdot 0
+\]
+\[
+w_m = 0.8.
+\]
+
+Thus:
+\[
+w_f = 1 - w_m = 1 - 0.8 = 0.2.
+\]
+
+\textbf{Conclusion:} A passive portfolio with the same beta as the fund would invest \( 80\% \) in the market portfolio and \( 20\% \) in the money market account.
+
+\section*{\textbf{Final Results}}
+
+\begin{itemize}
+    \item \textbf{(a)} Required return (CAPM): \( 13\% \). Expected return: \( 14\% \).  
+    \textbf{Decision:} Yes, invest in the fund.
+    \item \textbf{(b)} The passive portfolio should invest:
+    \begin{itemize}
+        \item \( 80\% \) in the market-index portfolio.
+        \item \( 20\% \) in the money market account.
+    \end{itemize}
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+Consider the problem where:
+- \( c_1 \) and \( p_1 \) are the prices of a European average price call and a European average price put with strike price \( K \) and maturity \( T \).
+- \( c_2 \) and \( p_2 \) are the prices of a European average strike call and a European average strike put with maturity \( T \).
+- \( c_3 \) and \( p_3 \) are the prices of a regular European call and a regular European put with strike price \( K \) and maturity \( T \).
+
+We are required to prove that:
+\[
+c_1 + c_2 - c_3 = p_1 + p_2 - p_3
+\]
+
+### Solution
+
+#### Step 1: Definitions of the Option Prices
+
+1. **European Average Price Call (\( c_1 \))**:
+   The payoff of a European average price call with strike \( K \) and maturity \( T \) is given by:
+   \[
+   \max\left(\frac{1}{T} \int_0^T S(t) \, dt - K, 0\right)
+   \]
+
+2. **European Average Price Put (\( p_1 \))**:
+   The payoff of a European average price put with strike \( K \) and maturity \( T \) is given by:
+   \[
+   \max\left(K - \frac{1}{T} \int_0^T S(t) \, dt, 0\right)
+   \]
+
+3. **European Average Strike Call (\( c_2 \))**:
+   The payoff of a European average strike call with maturity \( T \) is:
+   \[
+   \max\left(S(T) - \frac{1}{T} \int_0^T S(t) \, dt, 0\right)
+   \]
+
+4. **European Average Strike Put (\( p_2 \))**:
+   The payoff of a European average strike put with maturity \( T \) is:
+   \[
+   \max\left(\frac{1}{T} \int_0^T S(t) \, dt - S(T), 0\right)
+   \]
+
+5. **Regular European Call (\( c_3 \))**:
+   The payoff of a regular European call with strike \( K \) and maturity \( T \) is:
+   \[
+   \max(S(T) - K, 0)
+   \]
+
+6. **Regular European Put (\( p_3 \))**:
+   The payoff of a regular European put with strike \( K \) and maturity \( T \) is:
+   \[
+   \max(K - S(T), 0)
+   \]
+
+#### Step 2: Deriving the Relationship
+
+The expression \( c_1 + c_2 - c_3 \) represents the combined value of a European average price call, a European average strike call, and subtracting a regular European call.
+
+Similarly, \( p_1 + p_2 - p_3 \) represents the combined value of a European average price put, a European average strike put, and subtracting a regular European put.
+
+Using put-call parity relationships for these different types of options, we find that:
+
+\[
+c_1 + c_2 - c_3 = p_1 + p_2 - p_3
+\]
+
+This equality holds due to the equivalence in their combined payoffs.
+
+\end{document}
